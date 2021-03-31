@@ -11,7 +11,7 @@ function TasksList({ tasks }) {
       </S.Container>
     );
   }
-  return <div />;
+  return <S.Container />;
 }
 
 export default TasksList;
