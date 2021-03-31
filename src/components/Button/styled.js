@@ -35,14 +35,16 @@ export const PrimaryButton = styled(Button)`
 
 export const SecondaryButton = styled(Button)`
   background-color: transparent;
+  border: 1px solid transparent;
   color: ${({ theme }) => theme.colors.moodyBlue};
 
   &:hover,
   &:focus {
-    background-color: ${({ theme }) => theme.colors.periwinkleGray};
+    border: 1px solid ${({ theme }) => theme.colors.moodyBlue};
   }
 
   &:active {
+    border: 1px solid ${({ theme }) => theme.colors.moodyBlue};
     background-color: ${({ theme }) => theme.colors.linkWater};
   }
 `;

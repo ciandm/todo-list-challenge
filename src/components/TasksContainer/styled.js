@@ -19,6 +19,10 @@ export const Container = styled.main`
 `;
 
 export const TasksWrapper = styled.div`
+  box-shadow: ${({ theme }) =>
+    theme.darkMode
+      ? ''
+      : '0px 6px 16px rgba(99, 113, 211, 0.04), 0px 12px 12px rgba(99, 113, 211, 0.08);'}
   display: flex;
   flex-direction: column;
 `;

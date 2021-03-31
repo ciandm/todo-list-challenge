@@ -4,9 +4,11 @@ import TasksControls from '../TasksControls/index';
 import TasksList from '../TasksList';
 import TasksStats from '../TasksList/TasksStats';
 import fakeTasks from '../../../data/fakeTasks';
+import TasksForm from '../TasksForm';
 
 function TasksContainer() {
   const [tasks, setTasks] = useState(fakeTasks);
+  const [formShown, setFormShown] = useState(false);
   const handleTaskChecked = (e, id) => {
     const updatedTasks = [...tasks];
     const index = updatedTasks.findIndex(i => i.id === id);
@@ -20,11 +22,14 @@ function TasksContainer() {
     const updatedTasks = allTasks.filter(t => t.id !== id);
     setTasks(updatedTasks);
   };
+  const handleFormToggle = () => {
+    setFormShown(prevState => !prevState);
+  };
   return (
     <S.Container>
-      <TasksControls />
+      <TasksControls handleFormToggle={handleFormToggle} />
       <S.TasksWrapper>
-        {/* form will go here */}
+        <TasksForm formShown={formShown} />
         <TasksList
           tasks={tasks}
           handleTaskChecked={handleTaskChecked}
