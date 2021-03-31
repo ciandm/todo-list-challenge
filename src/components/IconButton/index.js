@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as S from './styled';
 
-function IconButton({ children, handleButtonClick, variation }) {
+function IconButton({ children, handleButtonClick, variation, ...restProps }) {
   if (variation === 'danger') {
     return (
-      <S.DangerButton onClick={() => handleButtonClick()}>
+      <S.DangerButton onClick={e => handleButtonClick(e)} {...restProps}>
         {children}
       </S.DangerButton>
     );

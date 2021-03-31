@@ -6,7 +6,7 @@ const theme = {
     haiti: 'hsl(232, 40%, 10%)',
     iceCold: 'hsl(155, 50%, 95%)',
     linkWater: 'hsl(232, 56%, 90%)',
-    mandysPink: 'hsl(0, 80%, 95%)',
+    mandysPink: 'hsl(0, 80%, 90%)',
     moodyBlue: 'hsl(232, 56%, 61%)',
     mountainMeadow: 'hsl(155, 81%, 46%)',
     periwinkleGray: 'hsl(232, 56%, 98%)',

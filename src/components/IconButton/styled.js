@@ -19,7 +19,7 @@ export const DangerButton = styled(Button)`
   &:hover,
   &:focus {
     background-color: ${({ theme }) =>
-      theme.darkMode ? theme.colors.bunting : theme.colors.mandysPink};
+      theme.darkMode ? theme.colors.haiti : theme.colors.mandysPink};
   }
 
   & svg {

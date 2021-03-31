@@ -1,18 +1,33 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { HiTrash } from 'react-icons/hi';
 import * as S from './styled';
 import IconButton from '../IconButton';
 import TaskCheck from './TaskCheck';
 
-function TaskItem() {
+function TaskItem({
+  checked,
+  date,
+  handleTaskChecked,
+  handleTaskRemove,
+  id,
+  title,
+}) {
+  const handleDeletePressed = e => {
+    handleTaskRemove(e, id);
+  };
   return (
-    <S.TaskItem>
-      <TaskCheck />
+    <S.TaskItem onClick={e => handleTaskChecked(e, id)}>
+      <TaskCheck checked={checked} />
       <S.TaskGroup>
-        <S.TaskTitle>Feed the cat</S.TaskTitle>
-        <S.TaskDate>Tomorrow</S.TaskDate>
+        <S.TaskTitle>{title}</S.TaskTitle>
+        <S.TaskDate>{date}</S.TaskDate>
       </S.TaskGroup>
-      <IconButton variation="danger">
+      <IconButton
+        handleButtonClick={handleDeletePressed}
+        variation="danger"
+        data-action="delete"
+      >
         <HiTrash />
       </IconButton>
     </S.TaskItem>
@@ -20,3 +35,11 @@ function TaskItem() {
 }
 
 export default TaskItem;
+
+TaskItem.propTypes = {
+  checked: PropTypes.bool.isRequired,
+  date: PropTypes.string.isRequired,
+  handleTaskChecked: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};

@@ -8,6 +8,7 @@ export const Check = styled.button`
   height: 4.8rem;
   position: relative;
   width: 4.8rem;
+  z-index: 100;
 
   &::before {
     background-color: ${({ checked, theme }) =>
@@ -45,7 +46,8 @@ export const Check = styled.button`
     checked &&
     css`
       & svg {
-        fill: ${({ theme }) => theme.colors.white};
+        fill: ${({ theme }) =>
+          theme.darkMode ? theme.colors.bunting : theme.colors.white};
       }
     `}
 `;

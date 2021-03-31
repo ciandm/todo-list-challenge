@@ -13,6 +13,11 @@ export const TaskItem = styled.div`
       ${({ theme }) =>
         theme.darkMode ? theme.colors.haiti : theme.colors.linkWater};
   }
+
+  &:hover {
+    background-color: ${({ theme }) =>
+      theme.darkMode ? theme.colors.bunting : theme.colors.iceCold};
+  }
 `;
 
 export const TaskGroup = styled.div`
