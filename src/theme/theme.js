@@ -1,4 +1,4 @@
-export const theme = {
+const theme = {
   colors: {
     bayOfMany: 'hsl(232, 40%, 20%)',
     bunting: 'hsl(232, 40%, 15%)',
@@ -19,3 +19,5 @@ export const theme = {
     tablet: 'screen and (min-width: 768px)',
   },
 };
+
+export default theme;
