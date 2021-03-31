@@ -16,7 +16,8 @@ export const Button = styled.button`
 `;
 
 export const DangerButton = styled(Button)`
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: ${({ theme }) => theme.colors.mandysPink};
   }
 
@@ -26,7 +27,8 @@ export const DangerButton = styled(Button)`
 `;
 
 export const RegularButton = styled(Button)`
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: ${({ theme }) =>
       theme.darkMode ? theme.colors.bunting : theme.colors.linkWater};
   }

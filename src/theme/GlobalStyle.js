@@ -31,11 +31,7 @@ const GlobalStyle = createGlobalStyle`
     border: none;
     cursor: pointer;
     font-family: inherit;
-
-    &:focus {
-      box-shadow: ${({ theme }) => `0 0 0 2px ${theme.colors.moodyBlue}`};
-      outline: none;
-    }
+    outline: none;
   }
 `;
 

@@ -7,7 +7,7 @@ export const Nav = styled.nav`
   box-shadow: ${({ theme }) =>
     theme.darkMode
       ? ''
-      : 'box-shadow: 0px 6px 16px rgba(99, 113, 211, 0.04), 0px 12px 12px rgba(99, 113, 211, 0.08);'};
+      : '0px 6px 16px rgba(99, 113, 211, 0.04), 0px 12px 12px rgba(99, 113, 211, 0.08);'};
 `;
 
 export const Wrapper = styled.div`
