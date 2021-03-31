@@ -2,7 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as S from './styled';
 
-function Button({ children, handleButtonClick, variation }) {
+function Button({
+  children,
+  handleButtonClick,
+  type,
+  variation,
+  ...restProps
+}) {
   if (variation === 'secondary') {
     return (
       <S.SecondaryButton onClick={() => handleButtonClick()}>
@@ -11,7 +17,11 @@ function Button({ children, handleButtonClick, variation }) {
     );
   }
   return (
-    <S.PrimaryButton onClick={() => handleButtonClick()}>
+    <S.PrimaryButton
+      type={type}
+      onClick={() => handleButtonClick()}
+      {...restProps}
+    >
       {children}
     </S.PrimaryButton>
   );
@@ -22,5 +32,6 @@ export default Button;
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   handleButtonClick: PropTypes.func.isRequired,
+  type: PropTypes.oneOf(['button', 'submit']),
   variation: PropTypes.oneOf(['primary', 'secondary'].isRequired),
 };

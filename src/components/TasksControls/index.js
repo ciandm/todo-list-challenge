@@ -1,12 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { HiPlus } from 'react-icons/hi';
 import Button from '../Button';
 import * as S from './styled';
 
-function TasksControls({ handleFormToggle }) {
+function TasksControls({ formShown, handleShowForm }) {
   return (
     <S.Controls>
-      <Button variation="primary" handleButtonClick={handleFormToggle}>
+      <Button
+        disabled={formShown}
+        variation="primary"
+        handleButtonClick={handleShowForm}
+      >
         New task <HiPlus />
       </Button>
       <Button variation="secondary">
@@ -17,3 +22,8 @@ function TasksControls({ handleFormToggle }) {
 }
 
 export default TasksControls;
+
+TasksControls.propTypes = {
+  formShown: PropTypes.bool.isRequired,
+  handleShowForm: PropTypes.func.isRequired,
+};

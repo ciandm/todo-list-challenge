@@ -22,14 +22,24 @@ function TasksContainer() {
     const updatedTasks = allTasks.filter(t => t.id !== id);
     setTasks(updatedTasks);
   };
-  const handleFormToggle = () => {
-    setFormShown(prevState => !prevState);
+  const handleShowForm = () => {
+    setFormShown(true);
+  };
+  const handleHideForm = () => {
+    setFormShown(false);
+  };
+  const handleFormSubmit = () => {
+    console.log('submitted');
   };
   return (
     <S.Container>
-      <TasksControls handleFormToggle={handleFormToggle} />
+      <TasksControls
+        handleShowForm={handleShowForm}
+        handleHideForm={handleHideForm}
+        formShown={formShown}
+      />
       <S.TasksWrapper>
-        <TasksForm formShown={formShown} />
+        <TasksForm formShown={formShown} handleHideForm={handleHideForm} />
         <TasksList
           tasks={tasks}
           handleTaskChecked={handleTaskChecked}

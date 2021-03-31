@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Body } from '../../theme/typography';
 
 export const Button = styled.button.attrs(({ type }) => ({
-  type,
+  type: type || 'button',
 }))`
   ${Body};
   border-radius: 1.2rem;
@@ -23,13 +23,18 @@ export const PrimaryButton = styled(Button)`
     width: 1.6rem;
   }
 
-  &:hover,
-  &:focus {
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
     background-color: hsl(232, 56%, 55%);
   }
 
   &:active {
     background-color: hsl(232, 56%, 50%);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
 `;
 
