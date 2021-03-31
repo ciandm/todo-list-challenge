@@ -7,7 +7,7 @@ const theme = {
     iceCold: 'hsl(155, 50%, 95%)',
     linkWater: 'hsl(232, 56%, 90%)',
     mandysPink: 'hsl(0, 80%, 95%)',
-    moodyBlue: 'hsl(252, 56%, 61%)',
+    moodyBlue: 'hsl(232, 56%, 61%)',
     mountainMeadow: 'hsl(155, 81%, 46%)',
     periwinkleGray: 'hsl(232, 56%, 98%)',
     purpleGray: 'hsl(233, 56%, 95%)',
