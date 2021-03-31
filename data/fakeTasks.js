@@ -3,7 +3,7 @@ const fakeTasks = [
     id: 1,
     task: {
       checked: false,
-      date: '01-05-21',
+      date: new Date('2021-04-01'),
       title: 'Feed the cat',
     },
   },
@@ -11,7 +11,7 @@ const fakeTasks = [
     id: 2,
     task: {
       checked: false,
-      date: '10-05-21',
+      date: new Date('2021-04-10'),
       title: 'Walk the cat',
     },
   },
@@ -19,7 +19,7 @@ const fakeTasks = [
     id: 3,
     task: {
       checked: false,
-      date: '11-05-21',
+      date: new Date('2021-04-15'),
       title: 'Bring the cat to the vet',
     },
   },
@@ -27,7 +27,7 @@ const fakeTasks = [
     id: 4,
     task: {
       checked: false,
-      date: '21-05-21',
+      date: new Date('2021-04-21'),
       title: 'Feed the cat',
     },
   },

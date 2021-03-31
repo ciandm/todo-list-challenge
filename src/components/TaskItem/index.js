@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { HiTrash } from 'react-icons/hi';
+import formatDistance from 'date-fns/formatDistance';
 import * as S from './styled';
 import IconButton from '../IconButton';
 import TaskCheck from './TaskCheck';
@@ -21,7 +22,9 @@ function TaskItem({
       <TaskCheck checked={checked} />
       <S.TaskGroup>
         <S.TaskTitle>{title}</S.TaskTitle>
-        <S.TaskDate>{date}</S.TaskDate>
+        <S.TaskDate>
+          {formatDistance(date, new Date(), { addSuffix: true })}
+        </S.TaskDate>
       </S.TaskGroup>
       <IconButton
         handleButtonClick={handleDeletePressed}

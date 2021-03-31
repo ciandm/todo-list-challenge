@@ -9,12 +9,18 @@ import TasksForm from '../TasksForm';
 function TasksContainer() {
   const [tasks, setTasks] = useState(fakeTasks);
   const [formShown, setFormShown] = useState(false);
+  const [values, setValues] = useState({
+    date: '',
+    title: '',
+  });
+
   const handleTaskChecked = (e, id) => {
     const updatedTasks = [...tasks];
     const index = updatedTasks.findIndex(i => i.id === id);
     updatedTasks[index].task.checked = !updatedTasks[index].task.checked;
     setTasks(updatedTasks);
   };
+
   const handleTaskRemove = (e, id) => {
     // prevent it from bubbling up to task item
     e.stopPropagation();
@@ -22,15 +28,19 @@ function TasksContainer() {
     const updatedTasks = allTasks.filter(t => t.id !== id);
     setTasks(updatedTasks);
   };
+
   const handleShowForm = () => {
     setFormShown(true);
   };
+
   const handleHideForm = () => {
     setFormShown(false);
   };
+
   const handleFormSubmit = () => {
     console.log('submitted');
   };
+
   return (
     <S.Container>
       <TasksControls
@@ -39,7 +49,12 @@ function TasksContainer() {
         formShown={formShown}
       />
       <S.TasksWrapper>
-        <TasksForm formShown={formShown} handleHideForm={handleHideForm} />
+        <TasksForm
+          formShown={formShown}
+          handleHideForm={handleHideForm}
+          handleFormSubmit={handleFormSubmit}
+          values={values}
+        />
         <TasksList
           tasks={tasks}
           handleTaskChecked={handleTaskChecked}
