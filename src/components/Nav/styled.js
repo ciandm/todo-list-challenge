@@ -15,6 +15,11 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 2.4rem 1.6rem;
+
+  @media ${({ theme }) => theme.mediaQueries.desktop} {
+    margin: 0 auto;
+    max-width: 103.2rem;
+  }
 `;
 
 export const Title = styled.h1`

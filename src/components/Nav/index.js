@@ -5,16 +5,23 @@ import IconButton from '../IconButton';
 import { useTheme } from '../../../pages/_app';
 
 function Nav() {
-  const { darkMode } = useTheme();
+  const { darkMode, toggleTheme } = useTheme();
+  // placeholder for now
+  const handleLogout = () => {
+    console.log('logged out');
+  };
+  const handleThemeSwitch = () => {
+    toggleTheme();
+  };
   return (
     <S.Nav>
       <S.Wrapper>
         <S.Title>Tasks</S.Title>
         <S.ButtonGroup>
-          <IconButton variation="primary">
+          <IconButton variation="primary" handleButtonClick={handleThemeSwitch}>
             {darkMode ? <HiSun /> : <HiMoon />}
           </IconButton>
-          <IconButton variation="primary">
+          <IconButton variation="primary" handleButtonClick={handleLogout}>
             <HiLogout />
           </IconButton>
         </S.ButtonGroup>
