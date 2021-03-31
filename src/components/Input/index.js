@@ -11,7 +11,7 @@ function Input({ handleInputChange, label, name, type, value }) {
         id={name}
         type={type}
         value={value}
-        handleInputChange={handleInputChange}
+        onChange={e => handleInputChange(e)}
       />
     </S.InputContainer>
   );

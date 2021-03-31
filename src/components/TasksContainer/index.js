@@ -9,10 +9,6 @@ import TasksForm from '../TasksForm';
 function TasksContainer() {
   const [tasks, setTasks] = useState(fakeTasks);
   const [formShown, setFormShown] = useState(false);
-  const [values, setValues] = useState({
-    date: '',
-    title: '',
-  });
 
   const handleTaskChecked = (e, id) => {
     const updatedTasks = [...tasks];
@@ -37,10 +33,6 @@ function TasksContainer() {
     setFormShown(false);
   };
 
-  const handleFormSubmit = () => {
-    console.log('submitted');
-  };
-
   return (
     <S.Container>
       <TasksControls
@@ -49,12 +41,7 @@ function TasksContainer() {
         formShown={formShown}
       />
       <S.TasksWrapper>
-        <TasksForm
-          formShown={formShown}
-          handleHideForm={handleHideForm}
-          handleFormSubmit={handleFormSubmit}
-          values={values}
-        />
+        <TasksForm formShown={formShown} handleHideForm={handleHideForm} />
         <TasksList
           tasks={tasks}
           handleTaskChecked={handleTaskChecked}

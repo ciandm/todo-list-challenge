@@ -22,6 +22,8 @@ export const Input = styled.input.attrs(({ type }) => ({
     ${({ theme }) =>
       theme.darkMode ? theme.colors.haiti : theme.colors.linkWater};
   border-radius: 1.2rem;
+  color: ${({ theme }) =>
+    theme.darkMode ? theme.colors.white : theme.colors.bayOfMany};
   font-family: inherit;
   padding: 1.2rem 1.6rem;
 
