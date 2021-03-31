@@ -9,3 +9,8 @@ export const Container = styled.div`
       ? ''
       : '0px 6px 16px rgba(99, 113, 211, 0.04), 0px 12px 12px rgba(99, 113, 211, 0.08);'};
 `;
+
+export const Tasks = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+`;
