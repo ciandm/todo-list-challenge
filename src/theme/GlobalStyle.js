@@ -9,9 +9,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     background-color: ${({ theme }) =>
-      theme.darkMode
-        ? theme.constants.colors.haiti
-        : theme.constants.colors.purpleGray};
+      theme.darkMode ? theme.colors.haiti : theme.colors.purpleGray};
   }
 
   #__next {

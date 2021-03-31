@@ -41,8 +41,9 @@ function MyApp({ Component, pageProps }) {
       <StyledThemeProvider
         theme={{
           // theme includes colours & media queries.
-          constants: theme,
+          colors: theme.colors,
           darkMode: themeState.dark,
+          mediaQueries: theme.mediaQueries,
         }}
       >
         <ThemeContext.Provider
@@ -60,3 +61,5 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
+
+export { useTheme };
