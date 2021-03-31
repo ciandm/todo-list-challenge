@@ -9,3 +9,8 @@ export const Container = styled.main`
   padding: 3.2rem 1.6rem;
   width: 100%;
 `;
+
+export const TasksWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
