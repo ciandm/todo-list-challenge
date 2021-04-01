@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const FormWrapper = styled.div`
   max-height: ${({ formShown }) => (formShown ? '400px' : '0')};
-  transition: max-height 0.35s ease;
+  transition: max-height 0.35s ease-in-out;
   overflow: hidden;
   position: relative;
   &::before {

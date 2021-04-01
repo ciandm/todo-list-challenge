@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { HiPlus } from 'react-icons/hi';
 import Button from '../Button';
 import * as S from './styled';
+import Dropdown from '../Dropdown';
 
 function TasksControls({ formShown, handleShowForm }) {
   return (
@@ -14,9 +15,7 @@ function TasksControls({ formShown, handleShowForm }) {
       >
         New task <HiPlus />
       </Button>
-      <Button variation="secondary">
-        New task <HiPlus />
-      </Button>
+      <Dropdown />
     </S.Controls>
   );
 }
