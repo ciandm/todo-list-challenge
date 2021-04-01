@@ -1,6 +1,8 @@
+import { v4 as uuidv4 } from 'uuid';
+
 const fakeTasks = [
   {
-    id: 1,
+    id: uuidv4(),
     task: {
       checked: false,
       date: new Date('2021-04-01'),
@@ -8,7 +10,7 @@ const fakeTasks = [
     },
   },
   {
-    id: 2,
+    id: uuidv4(),
     task: {
       checked: false,
       date: new Date('2021-04-10'),
@@ -16,7 +18,7 @@ const fakeTasks = [
     },
   },
   {
-    id: 3,
+    id: uuidv4(),
     task: {
       checked: false,
       date: new Date('2021-04-15'),
@@ -24,7 +26,7 @@ const fakeTasks = [
     },
   },
   {
-    id: 4,
+    id: uuidv4(),
     task: {
       checked: false,
       date: new Date('2021-04-21'),

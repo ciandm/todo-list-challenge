@@ -1,18 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import format from 'date-fns/format';
 import * as S from './styled';
 
-function Input({ handleInputChange, label, name, type, value }) {
+function Input({ error, handleInputChange, label, name, type, value }) {
   return (
     <S.InputContainer>
       <S.Label htmlFor={name}>{label}</S.Label>
       <S.Input
+        error={error}
         name={name}
         id={name}
         type={type}
         value={value}
         onChange={e => handleInputChange(e)}
+        min={type === 'date' ? format(new Date(), 'yyyy-MM-dd') : null}
       />
+      {error && <S.Error>{error}</S.Error>}
     </S.InputContainer>
   );
 }
@@ -20,6 +24,7 @@ function Input({ handleInputChange, label, name, type, value }) {
 export default Input;
 
 Input.propTypes = {
+  error: PropTypes.string,
   handleInputChange: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { SmallCaps } from '../../theme/typography';
+import { Body, SmallCaps } from '../../theme/typography';
 
 export const InputContainer = styled.div`
   display: flex;
@@ -16,6 +16,7 @@ export const Label = styled.label`
 export const Input = styled.input.attrs(({ type }) => ({
   type: type || 'text',
 }))`
+  ${Body};
   background-color: ${({ theme }) =>
     theme.darkMode ? theme.colors.haiti : theme.colors.white};
   border: 1px solid
@@ -38,4 +39,10 @@ export const Input = styled.input.attrs(({ type }) => ({
     border: 1px solid ${({ theme }) => theme.colors.moodyBlue};
     outline: none;
   }
+`;
+
+export const Error = styled.span`
+  color: ${({ theme }) => theme.colors.burntSienna};
+  font-size: 1.6rem;
+  padding-top: 1.2rem;
 `;

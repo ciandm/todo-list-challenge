@@ -19,7 +19,7 @@ function Button({
   return (
     <S.PrimaryButton
       type={type}
-      onClick={() => handleButtonClick()}
+      onClick={handleButtonClick ? () => handleButtonClick() : null}
       {...restProps}
     >
       {children}
@@ -31,7 +31,7 @@ export default Button;
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  handleButtonClick: PropTypes.func.isRequired,
+  handleButtonClick: PropTypes.func,
   type: PropTypes.oneOf(['button', 'submit']),
   variation: PropTypes.oneOf(['primary', 'secondary'].isRequired),
 };

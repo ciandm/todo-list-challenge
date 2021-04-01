@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { HiTrash } from 'react-icons/hi';
 import formatDistance from 'date-fns/formatDistance';
+import isToday from 'date-fns/isToday';
 import * as S from './styled';
 import IconButton from '../IconButton';
 import TaskCheck from './TaskCheck';
@@ -23,7 +24,9 @@ function TaskItem({
       <S.TaskGroup>
         <S.TaskTitle>{title}</S.TaskTitle>
         <S.TaskDate>
-          {formatDistance(date, new Date(), { addSuffix: true })}
+          {isToday(date)
+            ? 'Today'
+            : formatDistance(date, new Date(), { addSuffix: true })}
         </S.TaskDate>
       </S.TaskGroup>
       <IconButton

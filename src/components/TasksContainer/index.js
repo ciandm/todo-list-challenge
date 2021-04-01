@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import * as S from './styled';
 import TasksControls from '../TasksControls/index';
 import TasksList from '../TasksList';
@@ -9,6 +10,14 @@ import TasksForm from '../TasksForm';
 function TasksContainer() {
   const [tasks, setTasks] = useState(fakeTasks);
   const [formShown, setFormShown] = useState(false);
+  const [values, setValues] = useState({
+    date: '',
+    title: '',
+  });
+  const [formErrors, setFormErrors] = useState({
+    date: '',
+    title: '',
+  });
 
   const handleTaskChecked = (e, id) => {
     const updatedTasks = [...tasks];
@@ -33,6 +42,67 @@ function TasksContainer() {
     setFormShown(false);
   };
 
+  const handleClearFormInputs = () => {
+    setValues({
+      date: '',
+      title: '',
+    });
+    setFormErrors({
+      date: '',
+      title: '',
+    });
+  };
+
+  const handleTaskAdd = () => {
+    const allTasks = [...tasks];
+    const newTask = {
+      id: uuidv4(),
+      task: {
+        checked: false,
+        date: new Date(values.date),
+        title: values.title,
+      },
+    };
+    allTasks.push(newTask);
+    setTasks(allTasks);
+    handleClearFormInputs();
+  };
+
+  const handleInputChange = e => {
+    const { name, value } = e.target;
+    setValues(prevValues => ({
+      ...prevValues,
+      [name]: [value],
+    }));
+    setFormErrors(prevErrors => ({
+      ...prevErrors,
+      [name]: '',
+    }));
+  };
+
+  const handleFormSubmit = e => {
+    e.preventDefault();
+    let formValid = true;
+    if (!values.date || values.date === '') {
+      formValid = false;
+      setFormErrors(prevErrors => ({
+        ...prevErrors,
+        date: 'Date required',
+      }));
+    }
+    if (!values.title || values.title === '') {
+      formValid = false;
+      setFormErrors(prevErrors => ({
+        ...prevErrors,
+        title: 'Title required',
+      }));
+    }
+
+    if (formValid) {
+      handleTaskAdd();
+    }
+  };
+
   return (
     <S.Container>
       <TasksControls
@@ -41,7 +111,14 @@ function TasksContainer() {
         formShown={formShown}
       />
       <S.TasksWrapper>
-        <TasksForm formShown={formShown} handleHideForm={handleHideForm} />
+        <TasksForm
+          formErrors={formErrors}
+          formShown={formShown}
+          handleHideForm={handleHideForm}
+          handleFormSubmit={handleFormSubmit}
+          handleInputChange={handleInputChange}
+          values={values}
+        />
         <TasksList
           tasks={tasks}
           handleTaskChecked={handleTaskChecked}
