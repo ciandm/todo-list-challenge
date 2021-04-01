@@ -9,6 +9,10 @@ import TasksForm from '../TasksForm';
 
 function TasksContainer() {
   const [tasks, setTasks] = useState(fakeTasks);
+  const [filters, setFilters] = useState({
+    Completed: false,
+    Unfinished: false,
+  });
   const [formShown, setFormShown] = useState(false);
   const [values, setValues] = useState({
     date: '',
@@ -18,6 +22,13 @@ function TasksContainer() {
     date: '',
     title: '',
   });
+
+  const handleFilterToggle = name => {
+    setFilters(prevFilters => ({
+      ...prevFilters,
+      [name]: !prevFilters[name],
+    }));
+  };
 
   const handleTaskChecked = (e, id) => {
     const updatedTasks = [...tasks];
@@ -106,8 +117,9 @@ function TasksContainer() {
   return (
     <S.Container>
       <TasksControls
+        filters={filters}
+        handleFilterToggle={handleFilterToggle}
         handleShowForm={handleShowForm}
-        handleHideForm={handleHideForm}
         formShown={formShown}
       />
       <S.TasksWrapper>

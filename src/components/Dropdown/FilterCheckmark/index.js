@@ -1,17 +1,27 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { HiCheck } from 'react-icons/hi';
 import * as S from './styled';
 
-function FilterCheckmark({ checked }) {
+function FilterCheckmark({ checked, handleFilterToggle, label }) {
   return (
-    <S.Wrapper>
-      <S.HiddenCheckbox checked={checked} />
+    <S.Wrapper onClick={() => handleFilterToggle(label)}>
+      <S.HiddenCheckbox
+        checked={checked}
+        onChange={() => handleFilterToggle(label)}
+      />
       <S.Checkbox checked={checked}>
         <HiCheck />
       </S.Checkbox>
-      <S.Label>Completed</S.Label>
+      <S.Label htmlFor={label}>{label}</S.Label>
     </S.Wrapper>
   );
 }
 
 export default FilterCheckmark;
+
+FilterCheckmark.propTypes = {
+  checked: PropTypes.bool.isRequired,
+  handleFilterToggle: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+};

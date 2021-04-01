@@ -25,11 +25,13 @@ export const Check = styled.button`
   }
 
   ${TaskItem}:hover > &::before,
-  &:hover::before {
+  &:hover::before,
+  &:focus::before {
     border: 1px solid ${({ theme }) => theme.colors.mountainMeadow};
   }
 
   &:hover svg,
+  &:focus svg,
   ${TaskItem}:hover > & svg {
     fill: ${({ checked, theme }) =>
       checked ? '' : theme.colors.mountainMeadow};

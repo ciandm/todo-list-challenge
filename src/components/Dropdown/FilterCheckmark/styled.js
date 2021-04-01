@@ -5,11 +5,7 @@ export const Wrapper = styled.button`
   align-items: center;
   cursor: pointer;
   display: flex;
-  &:focus {
-    box-shadow: unset;
-  }
-  &:hover svg,
-  &:focus svg {
+  &:hover svg {
     fill: ${({ theme }) => theme.colors.white};
   }
 `;
@@ -46,9 +42,9 @@ export const Checkbox = styled.div`
   justify-content: center;
   transition: all 150ms;
   width: 16px;
-  ${Wrapper}:hover &,
-  ${Wrapper}:focus & {
-    background-color: ${({ theme }) => theme.colors.moodyBlue};
+
+  ${Wrapper}:focus > & svg {
+    fill: ${({ theme }) => theme.colors.white};
   }
 
   & svg {

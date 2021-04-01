@@ -11,10 +11,14 @@ export const Button = styled.button`
   align-items: center;
   color: ${({ theme }) => theme.colors.moodyBlue};
   display: flex;
+  margin-bottom: -8px;
+  padding-bottom: 8px;
 
   & svg {
     fill: ${({ theme }) => theme.colors.moodyBlue};
     margin-left: 8px;
+    transform: ${({ open }) => (open ? 'rotate(180deg)' : '')};
+    transition: transform 0.25s ease-in-out;
   }
 `;
 
@@ -22,7 +26,6 @@ export const Dropdown = styled.div`
   background-color: ${({ theme }) =>
     theme.darkMode ? theme.colors.bayOfMany : theme.colors.white};
   border-radius: 1.2rem;
-  bottom: calc(0 + 8px);
   box-shadow: ${({ theme }) =>
     theme.darkMode
       ? '0px 4px 24px rgba(15, 18, 36, 0.48);'

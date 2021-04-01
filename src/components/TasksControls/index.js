@@ -5,7 +5,12 @@ import Button from '../Button';
 import * as S from './styled';
 import Dropdown from '../Dropdown';
 
-function TasksControls({ formShown, handleShowForm }) {
+function TasksControls({
+  filters,
+  formShown,
+  handleShowForm,
+  handleFilterToggle,
+}) {
   return (
     <S.Controls>
       <Button
@@ -15,7 +20,7 @@ function TasksControls({ formShown, handleShowForm }) {
       >
         New task <HiPlus />
       </Button>
-      <Dropdown />
+      <Dropdown handleFilterToggle={handleFilterToggle} filters={filters} />
     </S.Controls>
   );
 }
@@ -23,6 +28,11 @@ function TasksControls({ formShown, handleShowForm }) {
 export default TasksControls;
 
 TasksControls.propTypes = {
+  filters: PropTypes.shape({
+    Completed: PropTypes.bool,
+    Unfinished: PropTypes.bool,
+  }).isRequired,
   formShown: PropTypes.bool.isRequired,
+  handleFilterToggle: PropTypes.func.isRequired,
   handleShowForm: PropTypes.func.isRequired,
 };
