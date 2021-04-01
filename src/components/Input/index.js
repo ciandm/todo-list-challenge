@@ -37,6 +37,6 @@ Input.propTypes = {
   handleInputChange: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['text', 'date']),
+  type: PropTypes.oneOf(['text', 'date', 'password', 'email']),
   value: PropTypes.string,
 };

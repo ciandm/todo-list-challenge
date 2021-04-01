@@ -83,7 +83,7 @@ function TasksContainer() {
     const { name, value } = e.target;
     setValues(prevValues => ({
       ...prevValues,
-      [name]: [value],
+      [name]: value,
     }));
     setFormErrors(prevErrors => ({
       ...prevErrors,

@@ -9,3 +9,20 @@ export default function Home() {
     </>
   );
 }
+
+export async function getServerSideProps() {
+  const data = false;
+
+  if (!data) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {}, // will be passed to the page component as props
+  };
+}

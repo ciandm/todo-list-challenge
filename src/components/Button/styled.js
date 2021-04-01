@@ -8,6 +8,7 @@ export const Button = styled.button.attrs(({ type }) => ({
   border-radius: 1.2rem;
   font-weight: 500;
   padding: 1.2rem 2.4rem;
+  text-align: center;
 `;
 
 export const PrimaryButton = styled(Button)`
@@ -15,6 +16,7 @@ export const PrimaryButton = styled(Button)`
   background-color: ${({ theme }) => theme.colors.moodyBlue};
   color: ${({ theme }) => theme.colors.white};
   display: flex;
+  justify-content: center;
 
   & svg {
     fill: ${({ theme }) => theme.colors.white};
