@@ -12,20 +12,32 @@ function TasksList({ filters, handleTaskChecked, handleTaskRemove, tasks }) {
       </S.Container>
     );
   }
+
+  const tasksToPrint = tasks.filter(t => {
+    // if both filters are applied, return each task
+    if (filters.completed && filters.unfinished) return t;
+    // check for completed tasks
+    if (filters.completed) return t.task.checked;
+    // check for unfinished tasks
+    if (filters.unfinished) return !t.task.checked;
+    return t;
+  });
+
+  if (tasksToPrint.length === 0) {
+    return (
+      <S.Container>
+        <EmptyTasks
+          emptyByFilter={filters.completed ? 'completed' : 'unfinished'}
+        />
+      </S.Container>
+    );
+  }
+
   return (
     <S.Container>
       <S.Tasks>
-        {tasks
-          .filter(t => {
-            // if both filters are applied, return each task
-            if (filters.completed && filters.unfinished) return t;
-            // check for completed tasks
-            if (filters.completed) return t.task.checked;
-            // check for unfinished tasks
-            if (filters.unfinished) return !t.task.checked;
-            return t;
-          })
-          .map(t => (
+        {tasksToPrint.map(t => {
+          return (
             <TaskItem
               key={t.id}
               handleTaskChecked={handleTaskChecked}
@@ -33,7 +45,8 @@ function TasksList({ filters, handleTaskChecked, handleTaskRemove, tasks }) {
               id={t.id}
               {...t.task}
             />
-          ))}
+          );
+        })}
       </S.Tasks>
     </S.Container>
   );

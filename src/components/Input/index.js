@@ -3,7 +3,15 @@ import PropTypes from 'prop-types';
 import format from 'date-fns/format';
 import * as S from './styled';
 
-function Input({ error, handleInputChange, label, name, type, value }) {
+function Input({
+  error,
+  handleInputChange,
+  label,
+  name,
+  type,
+  value,
+  ...rest
+}) {
   return (
     <S.InputContainer>
       <S.Label htmlFor={name}>{label}</S.Label>
@@ -15,6 +23,7 @@ function Input({ error, handleInputChange, label, name, type, value }) {
         value={value}
         onChange={e => handleInputChange(e)}
         min={type === 'date' ? format(new Date(), 'yyyy-MM-dd') : null}
+        {...rest}
       />
       {error && <S.Error>{error}</S.Error>}
     </S.InputContainer>

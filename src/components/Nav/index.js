@@ -16,7 +16,7 @@ function Nav() {
   return (
     <S.Nav>
       <S.Wrapper>
-        <S.Title>Tasks</S.Title>
+        <S.Title>My tasks</S.Title>
         <S.ButtonGroup>
           <IconButton variation="primary" handleButtonClick={handleThemeSwitch}>
             {darkMode ? <HiSun /> : <HiMoon />}

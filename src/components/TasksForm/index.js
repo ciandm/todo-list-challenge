@@ -22,6 +22,7 @@ function TasksForm({
             label="Task to complete"
             name="title"
             handleInputChange={handleInputChange}
+            tabIndex={formShown ? '0' : '-1'}
           />
           <Input
             error={formErrors.date}
@@ -30,16 +31,22 @@ function TasksForm({
             name="date"
             type="date"
             handleInputChange={handleInputChange}
+            tabIndex={formShown ? '0' : '-1'}
           />
         </S.FormGroup>
         <S.ButtonGroup>
-          <Button variation="primary" type="submit">
+          <Button
+            variation="primary"
+            type="submit"
+            tabIndex={formShown ? '0' : '-1'}
+          >
             Create task
           </Button>
           <Button
             handleButtonClick={handleHideForm}
             variation="secondary"
             type="button"
+            tabIndex={formShown ? '0' : '-1'}
           >
             Cancel
           </Button>

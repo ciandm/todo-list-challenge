@@ -1,17 +1,15 @@
 import React from 'react';
+import EmptyMessage from './EmptyMessage';
 import * as S from './styled';
 
-const EmptyTasks = () => {
+const EmptyTasks = ({ emptyByFilter }) => {
   return (
     <S.Container>
       <S.Image
         src="/images/empty-notes-illustration.svg"
-        alt="No tasks set yet illustration"
+        alt="No tasks yet illustration"
       />
-      <S.Copy>You have no tasks yet.</S.Copy>
-      <S.Copy>
-        Click <strong>“New task”</strong> to get started.
-      </S.Copy>
+      <EmptyMessage emptyByFilter={emptyByFilter} />
     </S.Container>
   );
 };

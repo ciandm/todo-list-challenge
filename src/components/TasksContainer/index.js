@@ -91,6 +91,12 @@ function TasksContainer() {
     }));
   };
 
+  const handleRemoveCompleted = () => {
+    const allTasks = [...tasks];
+    const filteredTasks = allTasks.filter(t => !t.task.checked);
+    setTasks(filteredTasks);
+  };
+
   const handleFormSubmit = e => {
     e.preventDefault();
     let formValid = true;
@@ -141,6 +147,7 @@ function TasksContainer() {
         />
       </S.TasksWrapper>
       <TasksStats
+        handleRemoveCompleted={handleRemoveCompleted}
         totalTasks={tasks.length}
         tasksCompleted={tasks.filter(t => t.task.checked).length}
       />
