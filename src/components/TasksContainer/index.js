@@ -120,7 +120,9 @@ function TasksContainer() {
           values={values}
         />
         <TasksList
-          tasks={tasks}
+          tasks={tasks.sort((a, b) => {
+            return a.task.date - b.task.date;
+          })}
           handleTaskChecked={handleTaskChecked}
           handleTaskRemove={handleTaskRemove}
         />
