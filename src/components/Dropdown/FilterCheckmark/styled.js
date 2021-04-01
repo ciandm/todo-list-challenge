@@ -69,4 +69,5 @@ export const Label = styled.label`
     theme.darkMode ? theme.colors.white : theme.colors.bayOfMany};
   cursor: inherit;
   margin-left: 1.2rem;
+  text-transform: capitalize;
 `;

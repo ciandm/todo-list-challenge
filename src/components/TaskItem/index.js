@@ -44,7 +44,7 @@ export default TaskItem;
 
 TaskItem.propTypes = {
   checked: PropTypes.bool.isRequired,
-  date: PropTypes.string.isRequired,
+  date: PropTypes.instanceOf(Date).isRequired,
   handleTaskChecked: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,

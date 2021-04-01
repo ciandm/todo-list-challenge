@@ -10,8 +10,8 @@ import TasksForm from '../TasksForm';
 function TasksContainer() {
   const [tasks, setTasks] = useState(fakeTasks);
   const [filters, setFilters] = useState({
-    Completed: false,
-    Unfinished: false,
+    completed: false,
+    unfinished: false,
   });
   const [formShown, setFormShown] = useState(false);
   const [values, setValues] = useState({
@@ -135,6 +135,7 @@ function TasksContainer() {
           tasks={tasks.sort((a, b) => {
             return a.task.date - b.task.date;
           })}
+          filters={filters}
           handleTaskChecked={handleTaskChecked}
           handleTaskRemove={handleTaskRemove}
         />

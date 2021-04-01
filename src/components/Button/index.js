@@ -33,5 +33,5 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   handleButtonClick: PropTypes.func,
   type: PropTypes.oneOf(['button', 'submit']),
-  variation: PropTypes.oneOf(['primary', 'secondary'].isRequired),
+  variation: PropTypes.oneOf(['primary', 'secondary']).isRequired,
 };
