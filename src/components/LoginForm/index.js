@@ -56,11 +56,20 @@ function LoginForm() {
       setLoading(true);
       if (activeForm === 'login') {
         login(values.email, values.password).catch(error => {
+          // error if user enters wrong password
           if (error.code === 'auth/wrong-password') {
             setLoading(false);
             setFormErrors(prevErrors => ({
               ...prevErrors,
               form: 'Wrong password or email address.',
+            }));
+          }
+          // error if user is not found
+          if (error.code === 'auth/user-not-found') {
+            setLoading(false);
+            setFormErrors(prevErrors => ({
+              ...prevErrors,
+              form: 'User not found.',
             }));
           }
         });

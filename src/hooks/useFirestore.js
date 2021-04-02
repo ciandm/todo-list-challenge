@@ -5,7 +5,6 @@ import 'firebase/firestore';
 const useFirestore = user => {
   const [userId, setUserId] = useState(user.uid || null);
   const [tasks, setTasks] = useState([]);
-  const [error, setError] = useState(null);
   const [tasksLoading, setTasksLoading] = useState(true);
 
   useEffect(() => {

@@ -23,6 +23,7 @@ function TasksForm({
             name="title"
             handleInputChange={handleInputChange}
             tabIndex={formShown ? '0' : '-1'}
+            placeholder="Go to the shop"
           />
           <Input
             error={formErrors.date}
@@ -32,6 +33,7 @@ function TasksForm({
             type="date"
             handleInputChange={handleInputChange}
             tabIndex={formShown ? '0' : '-1'}
+            placeholder="MM/DD/YYYY"
           />
         </S.FormGroup>
         <S.ButtonGroup>

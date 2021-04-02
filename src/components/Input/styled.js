@@ -31,13 +31,21 @@ export const Input = styled.input.attrs(({ type }) => ({
   &::placeholder {
     color: ${({ theme }) =>
       theme.darkMode ? theme.colors.linkWater : theme.colors.moodyBlue};
-    opacity: ${({ theme }) => (theme.darkMode ? '0.5' : '0.7')};
+    opacity: 0.4;
   }
 
   &:hover,
   &:focus {
     border: 1px solid ${({ theme }) => theme.colors.moodyBlue};
     outline: none;
+  }
+
+  &[type='date']::-webkit-calendar-picker-indicator {
+    filter: ${({ theme }) => (theme.darkMode ? 'invert(100%)' : '')};
+  }
+
+  &[type='text'] {
+    appearance: none;
   }
 `;
 

@@ -10,6 +10,7 @@ function Input({
   name,
   type,
   value,
+  placeholder,
   ...rest
 }) {
   return (
@@ -23,6 +24,7 @@ function Input({
         value={value}
         onChange={e => handleInputChange(e)}
         min={type === 'date' ? format(new Date(), 'yyyy-MM-dd') : null}
+        placeholder={placeholder}
         {...rest}
       />
       {error && <S.Error>{error}</S.Error>}
@@ -37,6 +39,7 @@ Input.propTypes = {
   handleInputChange: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string,
   type: PropTypes.oneOf(['text', 'date', 'password', 'email']),
   value: PropTypes.string,
 };
