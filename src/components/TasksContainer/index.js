@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import * as S from './styled';
 import TasksControls from '../TasksControls/index';
 import TasksList from '../TasksList';
 import TasksStats from '../TasksList/TasksStats';
-import fakeTasks from '../../../data/fakeTasks';
 import TasksForm from '../TasksForm';
+import useFirestore from '../../hooks/useFirestore';
+import { AuthContext } from '../../../lib/AuthContext';
 
 function TasksContainer() {
-  const [tasks, setTasks] = useState(fakeTasks);
+  const { authUser } = useContext(AuthContext);
+  const { tasks } = useFirestore(authUser.user);
   const [filters, setFilters] = useState({
     completed: false,
     unfinished: false,
@@ -34,7 +36,7 @@ function TasksContainer() {
     const updatedTasks = [...tasks];
     const index = updatedTasks.findIndex(i => i.id === id);
     updatedTasks[index].task.checked = !updatedTasks[index].task.checked;
-    setTasks(updatedTasks);
+    // setTasks(updatedTasks);
   };
 
   const handleTaskRemove = (e, id) => {
@@ -42,7 +44,7 @@ function TasksContainer() {
     e.stopPropagation();
     const allTasks = [...tasks];
     const updatedTasks = allTasks.filter(t => t.id !== id);
-    setTasks(updatedTasks);
+    // setTasks(updatedTasks);
   };
 
   const handleShowForm = () => {
@@ -75,7 +77,7 @@ function TasksContainer() {
       },
     };
     allTasks.push(newTask);
-    setTasks(allTasks);
+    // setTasks(allTasks);
     handleClearFormInputs();
   };
 

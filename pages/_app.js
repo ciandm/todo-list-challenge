@@ -4,10 +4,7 @@ import Head from 'next/head';
 import GlobalStyle from '../src/theme/GlobalStyle';
 import theme from '../src/theme/theme';
 import useDarkMode from '../src/hooks/useDarkMode';
-import firebase from '../lib/firebase';
 import { AuthProvider } from '../lib/AuthContext';
-
-firebase();
 
 // initializing theme context
 const ThemeContext = createContext({

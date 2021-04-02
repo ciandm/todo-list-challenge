@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 
-const useFirestore = () => {
+const useFirestore = user => {
+  const [userId, setUserId] = useState(user.uid || null);
   const [tasks, setTasks] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -10,27 +11,27 @@ const useFirestore = () => {
   useEffect(() => {
     const unsubscribe = firebase
       .firestore()
+      .collection('users')
+      .doc(userId)
       .collection('tasks')
+      .orderBy('date')
       .onSnapshot(querySnapshot => {
         const allTasks = [];
         querySnapshot.forEach(doc => {
-          allTasks.push(doc.data());
+          allTasks.push({
+            id: doc.id,
+            task: {
+              checked: doc.data().checked,
+              date: new Date(doc.data().date.seconds),
+              title: doc.data().title,
+            },
+          });
         });
         setTasks(allTasks);
+        setLoading(false);
       });
     return () => unsubscribe();
-  }, []);
-
-  // const readData = () => {
-  //   const unsubscribe = firebase
-  //     .firestore()
-  //     .collection('tasks')
-  //     .onSnapshot(querySnapshot => {
-  //       querySnapshot.forEach(doc => {
-  //         console.log(doc.data());
-  //       });
-  //     });
-  // };
+  }, [userId]);
 
   return {
     loading,
