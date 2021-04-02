@@ -10,7 +10,7 @@ import { AuthContext } from '../../../lib/AuthContext';
 
 function TasksContainer() {
   const { authUser } = useContext(AuthContext);
-  const { tasks } = useFirestore(authUser.user);
+  const { tasks, addTask, checkTask } = useFirestore(authUser.user);
   const [filters, setFilters] = useState({
     completed: false,
     unfinished: false,
@@ -32,11 +32,8 @@ function TasksContainer() {
     }));
   };
 
-  const handleTaskChecked = (e, id) => {
-    const updatedTasks = [...tasks];
-    const index = updatedTasks.findIndex(i => i.id === id);
-    updatedTasks[index].task.checked = !updatedTasks[index].task.checked;
-    // setTasks(updatedTasks);
+  const handleTaskChecked = (id, currentStatus) => {
+    checkTask(id, currentStatus);
   };
 
   const handleTaskRemove = (e, id) => {
@@ -67,17 +64,10 @@ function TasksContainer() {
   };
 
   const handleTaskAdd = () => {
-    const allTasks = [...tasks];
-    const newTask = {
-      id: uuidv4(),
-      task: {
-        checked: false,
-        date: new Date(values.date),
-        title: values.title,
-      },
-    };
-    allTasks.push(newTask);
-    // setTasks(allTasks);
+    addTask({
+      date: values.date,
+      title: values.title,
+    });
     handleClearFormInputs();
   };
 

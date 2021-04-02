@@ -5,7 +5,7 @@ import Button from '../Button';
 import useFirebase from '../../hooks/useFirebase';
 
 function LoginForm() {
-  const { login } = useFirebase();
+  const { login, signup } = useFirebase();
   const [values, setValues] = useState({
     email: '',
     password: '',

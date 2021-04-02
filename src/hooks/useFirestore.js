@@ -6,36 +6,90 @@ const useFirestore = user => {
   const [userId, setUserId] = useState(user.uid || null);
   const [tasks, setTasks] = useState([]);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [tasksLoading, setTasksLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = firebase
+    const fetchTasks = async id => {
+      firebase
+        .firestore()
+        .collection('users')
+        .doc(id)
+        .collection('tasks')
+        .get()
+        .then(snapshot => {
+          const data = [];
+          snapshot.forEach(doc => {
+            data.push({
+              id: doc.id,
+              task: {
+                checked: doc.data().checked,
+                date: doc.data().date.toDate(),
+                title: doc.data().title,
+              },
+            });
+          });
+          setTasks(data);
+          setTasksLoading(false);
+        });
+    };
+    fetchTasks(userId);
+  }, [userId]);
+
+  const addTask = task => {
+    firebase
       .firestore()
       .collection('users')
       .doc(userId)
       .collection('tasks')
-      .orderBy('date')
-      .onSnapshot(querySnapshot => {
-        const allTasks = [];
-        querySnapshot.forEach(doc => {
-          allTasks.push({
-            id: doc.id,
-            task: {
-              checked: doc.data().checked,
-              date: new Date(doc.data().date.seconds),
-              title: doc.data().title,
+      .add({
+        checked: false,
+        date: new Date(task.date),
+        title: task.title,
+      })
+      .then(docRef => {
+        setTasks(prevTasks => {
+          return [
+            ...prevTasks,
+            {
+              id: docRef.id,
+              task: {
+                checked: false,
+                date: new Date(task.date),
+                title: task.title,
+              },
             },
-          });
+          ];
         });
-        setTasks(allTasks);
-        setLoading(false);
+        console.log(`Document added with ID ${docRef.id}`);
+      })
+      .catch(e => {
+        console.log(`Error adding document: ${e}`);
       });
-    return () => unsubscribe();
-  }, [userId]);
+  };
+
+  const checkTask = (id, currentState) => {
+    firebase
+      .firestore()
+      .collection('users')
+      .doc(userId)
+      .collection('tasks')
+      .doc(id)
+      .update({
+        checked: !currentState,
+      })
+      .then(() => {
+        const allTasks = [...tasks];
+        const index = tasks.findIndex(t => t.id === id);
+        allTasks[index].task.checked = !currentState;
+        setTasks(allTasks);
+      });
+  };
 
   return {
-    loading,
+    addTask,
+    checkTask,
     tasks,
+    tasksLoading,
   };
 };
 

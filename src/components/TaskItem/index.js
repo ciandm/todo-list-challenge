@@ -19,7 +19,7 @@ function TaskItem({
     handleTaskRemove(e, id);
   };
   return (
-    <S.TaskItem onClick={e => handleTaskChecked(e, id)}>
+    <S.TaskItem onClick={() => handleTaskChecked(id, checked)}>
       <TaskCheck checked={checked} />
       <S.TaskGroup>
         <S.TaskTitle>{title}</S.TaskTitle>

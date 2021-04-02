@@ -26,8 +26,11 @@ function useFirebase() {
 
   const signup = useCallback(
     (email, password) =>
-      firebase.auth().createUserWithEmailAndPassword(email, password),
-    []
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(() => router.push('/')),
+    [router]
   );
 
   return {
