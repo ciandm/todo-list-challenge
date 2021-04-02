@@ -12,8 +12,10 @@ function LoginForm() {
   });
   const [formErrors, setFormErrors] = useState({
     email: '',
+    form: '',
     password: '',
   });
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = e => {
     const { name, value } = e.target;
@@ -46,7 +48,16 @@ function LoginForm() {
     }
 
     if (formValid) {
-      login(values.email, values.password);
+      setLoading(true);
+      login(values.email, values.password).catch(e => {
+        if (e.code === 'auth/wrong-password') {
+          setLoading(false);
+          setFormErrors(prevErrors => ({
+            ...prevErrors,
+            form: 'Wrong password or email address.',
+          }));
+        }
+      });
     }
   };
   return (
@@ -72,12 +83,13 @@ function LoginForm() {
         </S.FormGroup>
         <S.ButtonGroup>
           <Button type="submit" variation="primary">
-            Log in
+            {loading ? 'Loading...' : 'Log in'}
           </Button>
           <Button type="button" variation="secondary">
             Sign up instead
           </Button>
         </S.ButtonGroup>
+        {formErrors.form && <S.FormError>{formErrors.form}</S.FormError>}
       </S.Form>
     </S.Wrapper>
   );

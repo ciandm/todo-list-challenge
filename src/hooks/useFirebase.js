@@ -12,8 +12,7 @@ function useFirebase() {
       firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
-        .then(() => router.push('/'))
-        .catch(e => console.log(e)),
+        .then(() => router.push('/')),
     [router]
   );
 

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Body } from '../../theme/typography';
 
 export const Wrapper = styled.div`
   align-items: center;
@@ -31,4 +32,10 @@ export const FormGroup = styled.div`
 export const ButtonGroup = styled.div`
   display: grid;
   gap: 1.6rem;
+`;
+
+export const FormError = styled.p`
+  ${Body};
+  color: ${({ theme }) => theme.colors.burntSienna};
+  text-align: center;
 `;
