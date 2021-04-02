@@ -60,10 +60,6 @@ const useFirestore = user => {
             },
           ];
         });
-        console.log(`Document added with ID ${docRef.id}`);
-      })
-      .catch(e => {
-        console.log(`Error adding document: ${e}`);
       });
   };
 
@@ -85,9 +81,45 @@ const useFirestore = user => {
       });
   };
 
+  const removeTask = id => {
+    firebase
+      .firestore()
+      .collection('users')
+      .doc(userId)
+      .collection('tasks')
+      .doc(id)
+      .delete()
+      .then(() => {
+        const allTasks = [...tasks];
+        const filteredTasks = allTasks.filter(t => t.id !== id);
+        setTasks(filteredTasks);
+      });
+  };
+
+  const removeCompletedTasks = () => {
+    const completedTasks = tasks.filter(t => t.task.checked);
+    const unfinishedTasks = tasks.filter(t => !t.task.checked);
+    const batch = firebase.firestore().batch();
+    // eslint-disable-next-line
+    for (let i = 0; i < completedTasks.length; i++) {
+      const taskRef = firebase
+        .firestore()
+        .collection('users')
+        .doc(userId)
+        .collection('tasks')
+        .doc(completedTasks[i].id);
+      batch.delete(taskRef);
+    }
+    batch.commit().then(() => {
+      setTasks(unfinishedTasks);
+    });
+  };
+
   return {
     addTask,
     checkTask,
+    removeCompletedTasks,
+    removeTask,
     tasks,
     tasksLoading,
   };

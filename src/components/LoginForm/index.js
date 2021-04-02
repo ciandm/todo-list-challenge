@@ -6,6 +6,7 @@ import useFirebase from '../../hooks/useFirebase';
 
 function LoginForm() {
   const { login, signup } = useFirebase();
+  const [activeForm, setActiveForm] = useState('login');
   const [values, setValues] = useState({
     email: '',
     password: '',
@@ -16,6 +17,10 @@ function LoginForm() {
     password: '',
   });
   const [loading, setLoading] = useState(false);
+
+  const handleToggleForm = () => {
+    setActiveForm(prevState => (prevState === 'login' ? 'signup' : 'login'));
+  };
 
   const handleInputChange = e => {
     const { name, value } = e.target;
@@ -49,15 +54,29 @@ function LoginForm() {
 
     if (formValid) {
       setLoading(true);
-      login(values.email, values.password).catch(e => {
-        if (e.code === 'auth/wrong-password') {
-          setLoading(false);
-          setFormErrors(prevErrors => ({
-            ...prevErrors,
-            form: 'Wrong password or email address.',
-          }));
-        }
-      });
+      if (activeForm === 'login') {
+        login(values.email, values.password).catch(error => {
+          if (error.code === 'auth/wrong-password') {
+            setLoading(false);
+            setFormErrors(prevErrors => ({
+              ...prevErrors,
+              form: 'Wrong password or email address.',
+            }));
+          }
+        });
+      }
+
+      if (activeForm === 'signup') {
+        signup(values.email, values.password).catch(error => {
+          if (error.code === 'auth/email-already-in-use') {
+            setLoading(false);
+            setFormErrors(prevErrors => ({
+              ...prevErrors,
+              form: 'That email is already in use.',
+            }));
+          }
+        });
+      }
     }
   };
   return (
@@ -83,10 +102,18 @@ function LoginForm() {
         </S.FormGroup>
         <S.ButtonGroup>
           <Button type="submit" variation="primary">
-            {loading ? 'Loading...' : 'Log in'}
+            {loading
+              ? 'Loading...'
+              : activeForm === 'login'
+              ? 'Log in'
+              : 'Sign up'}
           </Button>
-          <Button type="button" variation="secondary">
-            Sign up instead
+          <Button
+            type="button"
+            variation="secondary"
+            handleButtonClick={handleToggleForm}
+          >
+            {activeForm === 'login' ? 'Sign up instead' : 'Log in instead'}
           </Button>
         </S.ButtonGroup>
         {formErrors.form && <S.FormError>{formErrors.form}</S.FormError>}

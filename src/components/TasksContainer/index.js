@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import * as S from './styled';
 import TasksControls from '../TasksControls/index';
 import TasksList from '../TasksList';
@@ -10,7 +9,13 @@ import { AuthContext } from '../../../lib/AuthContext';
 
 function TasksContainer() {
   const { authUser } = useContext(AuthContext);
-  const { tasks, addTask, checkTask } = useFirestore(authUser.user);
+  const {
+    tasks,
+    addTask,
+    checkTask,
+    removeTask,
+    removeCompletedTasks,
+  } = useFirestore(authUser.user);
   const [filters, setFilters] = useState({
     completed: false,
     unfinished: false,
@@ -39,9 +44,7 @@ function TasksContainer() {
   const handleTaskRemove = (e, id) => {
     // prevent it from bubbling up to task item
     e.stopPropagation();
-    const allTasks = [...tasks];
-    const updatedTasks = allTasks.filter(t => t.id !== id);
-    // setTasks(updatedTasks);
+    removeTask(id);
   };
 
   const handleShowForm = () => {
@@ -84,9 +87,7 @@ function TasksContainer() {
   };
 
   const handleRemoveCompleted = () => {
-    const allTasks = [...tasks];
-    const filteredTasks = allTasks.filter(t => !t.task.checked);
-    setTasks(filteredTasks);
+    removeCompletedTasks();
   };
 
   const handleFormSubmit = e => {
