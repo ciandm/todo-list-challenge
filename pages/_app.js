@@ -4,6 +4,10 @@ import Head from 'next/head';
 import GlobalStyle from '../src/theme/GlobalStyle';
 import theme from '../src/theme/theme';
 import useDarkMode from '../src/hooks/useDarkMode';
+import firebase from '../lib/firebase';
+import { AuthProvider } from '../lib/AuthContext';
+
+firebase();
 
 // initializing theme context
 const ThemeContext = createContext({
@@ -38,24 +42,26 @@ function MyApp({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>
-      <StyledThemeProvider
-        theme={{
-          // theme includes colours & media queries.
-          colors: theme.colors,
-          darkMode: themeState.dark,
-          mediaQueries: theme.mediaQueries,
-        }}
-      >
-        <ThemeContext.Provider
-          value={{
+      <AuthProvider>
+        <StyledThemeProvider
+          theme={{
+            // theme includes colours & media queries.
+            colors: theme.colors,
             darkMode: themeState.dark,
-            toggleTheme,
+            mediaQueries: theme.mediaQueries,
           }}
         >
-          <GlobalStyle />
-          <Component {...pageProps} />
-        </ThemeContext.Provider>
-      </StyledThemeProvider>
+          <ThemeContext.Provider
+            value={{
+              darkMode: themeState.dark,
+              toggleTheme,
+            }}
+          >
+            <GlobalStyle />
+            <Component {...pageProps} />
+          </ThemeContext.Provider>
+        </StyledThemeProvider>
+      </AuthProvider>
     </>
   );
 }

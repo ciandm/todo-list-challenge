@@ -1,27 +1,24 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useCallback } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import { useRouter } from 'next/router';
 
 function useFirebase() {
-  const [authUser, setAuthUser] = useState(firebase.auth().currentUser);
-  const handleUser = user => {
-    if (user) {
-      setAuthUser(user);
-    }
-  };
-  useEffect(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged(handleUser);
-    return () => unsubscribe();
-  }, []);
-
+  const router = useRouter();
   const login = useCallback(
     (email, password) =>
-      firebase.auth().signInWithEmailAndPassword(email, password),
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .catch(e => console.log(e)),
     []
   );
 
-  const logout = useCallback(() => firebase.auth().signOut(), []);
+  const logout = useCallback(() => {
+    firebase.auth().signOut();
+    router.push('/login');
+  }, [router]);
 
   const signup = useCallback(
     (email, password) =>
@@ -30,7 +27,6 @@ function useFirebase() {
   );
 
   return {
-    authUser,
     login,
     logout,
     signup,

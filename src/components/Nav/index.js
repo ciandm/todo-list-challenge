@@ -3,12 +3,14 @@ import { HiMoon, HiSun, HiLogout } from 'react-icons/hi';
 import * as S from './styled';
 import IconButton from '../IconButton';
 import { useTheme } from '../../../pages/_app';
+import useFirebase from '../../hooks/useFirebase';
 
 function Nav() {
   const { darkMode, toggleTheme } = useTheme();
+  const { logout } = useFirebase();
   // placeholder for now
   const handleLogout = () => {
-    console.log('logged out');
+    logout();
   };
   const handleThemeSwitch = () => {
     toggleTheme();

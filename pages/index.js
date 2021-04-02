@@ -1,9 +1,5 @@
 import Nav from '../src/components/Nav';
 import TasksContainer from '../src/components/TasksContainer';
-import useFirestore from '../src/hooks/useFirestore';
-import firebase from '../lib/firebase';
-
-firebase();
 
 export default function Home() {
   return (

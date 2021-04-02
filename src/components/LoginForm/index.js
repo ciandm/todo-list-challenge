@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import * as S from './styled';
 import Input from '../Input';
 import Button from '../Button';
+import useFirebase from '../../hooks/useFirebase';
 
 function LoginForm() {
+  const { authUser, login } = useFirebase();
   const [values, setValues] = useState({
     email: '',
     password: '',
@@ -44,7 +46,8 @@ function LoginForm() {
     }
 
     if (formValid) {
-      console.log(`Submitted! ${`${values.email} ${values.password}`}`);
+      login(values.email, values.password);
+      console.log(authUser);
     }
   };
   return (
