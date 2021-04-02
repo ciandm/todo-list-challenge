@@ -11,6 +11,7 @@ function TasksContainer() {
   const { authUser } = useContext(AuthContext);
   const {
     tasks,
+    tasksLoading,
     addTask,
     checkTask,
     removeTask,
@@ -135,6 +136,7 @@ function TasksContainer() {
             return a.task.date - b.task.date;
           })}
           filters={filters}
+          tasksLoading={tasksLoading}
           handleTaskChecked={handleTaskChecked}
           handleTaskRemove={handleTaskRemove}
         />

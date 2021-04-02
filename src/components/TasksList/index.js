@@ -3,8 +3,23 @@ import PropTypes from 'prop-types';
 import * as S from './styled';
 import EmptyTasks from './EmptyTasks';
 import TaskItem from '../TaskItem';
+import Loader from '../PageLoader/Loader';
 
-function TasksList({ filters, handleTaskChecked, handleTaskRemove, tasks }) {
+function TasksList({
+  filters,
+  tasksLoading,
+  handleTaskChecked,
+  handleTaskRemove,
+  tasks,
+}) {
+  if (tasksLoading) {
+    return (
+      <S.Container>
+        <Loader />
+      </S.Container>
+    );
+  }
+
   if (tasks.length === 0 || !tasks) {
     return (
       <S.Container>
@@ -62,4 +77,5 @@ TasksList.propTypes = {
   handleTaskChecked: PropTypes.func.isRequired,
   handleTaskRemove: PropTypes.func.isRequired,
   tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  tasksLoading: PropTypes.bool.isRequired,
 };

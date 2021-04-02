@@ -30,10 +30,12 @@ export const Stat = styled.p`
 export const RemoveCompleted = styled.button`
   ${SmallCaps};
   color: ${({ theme }) => theme.colors.moodyBlue};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : '')};
+  opacity: ${({ disabled }) => (disabled ? '0.5' : 1)};
   text-decoration: underline;
 
-  &:hover,
-  &:focus {
+  &:hover:not(:disabled),
+  &:focus:not(:disabled) {
     color: ${({ theme }) =>
       theme.darkMode ? theme.colors.white : theme.colors.haiti};
   }

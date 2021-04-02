@@ -6,7 +6,9 @@ const TasksStats = ({ handleRemoveCompleted, tasksCompleted, totalTasks }) => {
   return (
     <S.Footer>
       <S.Stats>
-        <S.Stat>{totalTasks} tasks total</S.Stat>
+        <S.Stat>
+          {totalTasks === 1 ? `${totalTasks} task` : `${totalTasks} tasks`}
+        </S.Stat>
         <S.Stat>
           {tasksCompleted === 1
             ? `${tasksCompleted} task`
@@ -14,7 +16,10 @@ const TasksStats = ({ handleRemoveCompleted, tasksCompleted, totalTasks }) => {
           completed
         </S.Stat>
       </S.Stats>
-      <S.RemoveCompleted onClick={() => handleRemoveCompleted()}>
+      <S.RemoveCompleted
+        disabled={tasksCompleted === 0}
+        onClick={() => handleRemoveCompleted()}
+      >
         Remove completed tasks
       </S.RemoveCompleted>
     </S.Footer>

@@ -7,16 +7,18 @@ function useDarkMode() {
   });
 
   useEffect(() => {
-    let userPrefersDark = true;
-    // if 'prefers-color-scheme: dark' is not supported
-    if (window.matchMedia('(prefers-color-scheme: dark)').media === 'not all') {
-      if (
-        localStorage.getItem('darkMode') &&
-        localStorage.getItem('darkMode') === true
-      ) {
-        return;
-      }
-      userPrefersDark = false;
+    // check if preference is stored in local storage
+    const preferenceInLS = localStorage.getItem('dark');
+    let userPrefersDark;
+
+    // if it is stored in LS, check if it's set
+    if (preferenceInLS) {
+      userPrefersDark = localStorage.getItem('dark') === 'true';
+    } else {
+      // if it's not set to dark in LS i.e. a new user, check their media preferences
+      userPrefersDark =
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches === true;
     }
 
     setThemeState({

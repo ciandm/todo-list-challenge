@@ -1,10 +1,11 @@
 import React from 'react';
+import Loader from './Loader';
 import * as S from './styled';
 
 const PageLoader = () => {
   return (
     <S.Container>
-      <S.Loader>Loading...</S.Loader>
+      <Loader />
     </S.Container>
   );
 };

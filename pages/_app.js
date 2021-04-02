@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
   // function to toggle users theme
   const toggleTheme = () => {
     const dark = !themeState.dark;
-    localStorage.setItem('darkMode', JSON.stringify(dark));
+    localStorage.setItem('dark', JSON.stringify(dark));
     setThemeState(prevState => ({
       ...prevState,
       dark,
