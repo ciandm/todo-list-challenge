@@ -6,19 +6,24 @@ import { useRouter } from 'next/router';
 
 function useFirebase() {
   const router = useRouter();
+
   const login = useCallback(
     (email, password) =>
       firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
+        .then(() => router.push('/'))
         .catch(e => console.log(e)),
-    []
+    [router]
   );
+
+  const getCurrentUser = useCallback(() => {
+    return firebase.auth().currentUser;
+  }, []);
 
   const logout = useCallback(() => {
     firebase.auth().signOut();
-    router.push('/login');
-  }, [router]);
+  }, []);
 
   const signup = useCallback(
     (email, password) =>
@@ -27,6 +32,7 @@ function useFirebase() {
   );
 
   return {
+    getCurrentUser,
     login,
     logout,
     signup,

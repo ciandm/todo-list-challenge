@@ -1,7 +1,17 @@
+import { useRouter } from 'next/router';
+import { useAuthContext } from '../lib/AuthContext';
 import Nav from '../src/components/Nav';
 import TasksContainer from '../src/components/TasksContainer';
 
 export default function Home() {
+  const { authUser } = useAuthContext();
+  const router = useRouter();
+  // reroute the user if they're not logged in
+  if (!authUser) {
+    router.replace('/login');
+    return null;
+  }
+
   return (
     <>
       <Nav />
@@ -11,7 +21,6 @@ export default function Home() {
 }
 
 // export async function getServerSideProps() {
-//   const data = false;
 
 //   if (!data) {
 //     return {

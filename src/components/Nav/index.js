@@ -1,5 +1,6 @@
 import React from 'react';
 import { HiMoon, HiSun, HiLogout } from 'react-icons/hi';
+import { useRouter } from 'next/router';
 import * as S from './styled';
 import IconButton from '../IconButton';
 import { useTheme } from '../../../pages/_app';
@@ -8,9 +9,11 @@ import useFirebase from '../../hooks/useFirebase';
 function Nav() {
   const { darkMode, toggleTheme } = useTheme();
   const { logout } = useFirebase();
+  const router = useRouter();
   // placeholder for now
   const handleLogout = () => {
     logout();
+    router.push('/login');
   };
   const handleThemeSwitch = () => {
     toggleTheme();
