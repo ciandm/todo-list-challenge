@@ -53,16 +53,17 @@ npm run dev
 ---
 On the live site, you can sign up with a new account using any email address and password you like. You can also use the below test accounts:
 
-1. Email: `johndoe@gmail.com` Password: `password2021`
-2. Email: `janedoe@gmail.com` Password: `password2021`
+1. Email: `johndoe@dublin.com` Password: `password2021`
+2. Email: `janedoe@dublin.com` Password: `password2021`
 
 ### What I would've done given more time
 ---
 
-1. **Interactivity** - I would've made the application more interactive, such as including animations when the user completes a task to delight the user.
+1. **Testing** - unfortunately, I am not as strong as I'd like to be with testing React components as I've not been exposed to much of it, and it's definitely something I'd like to improve upon and become better at.
 2. **Pagination** -- the list can become long easily if there are a lot of items, and pagination would be an obvious solution for this.
 3. **Reminders** - integrate with an email service to send reminders that task deadlines are approaching.
 4. **Categories** - categorize todos and allow the user to filter todos by their category.
 5. **Better description** - expand the form for creating a todo to include more information such as locations and descriptions. Users would be able to click into each todo and view more information on them.
 6. **Filter by deadlines** - allow the user to filter tasks by deadlines, so they know what's coming up.
 7. **Mark as important** - allow the user to mark tasks as important, and improve the visibility for these tasks by bringing them towards the top.
+8. **Interactivity** - I would've made the application more interactive, such as including animations when the user completes a task to delight the user.
