@@ -7,10 +7,11 @@ function FilterCheckmark({ checked, handleFilterToggle, label }) {
   return (
     <S.Wrapper onClick={() => handleFilterToggle(label)}>
       <S.HiddenCheckbox
+        name={label}
         checked={checked}
         onChange={() => handleFilterToggle(label)}
       />
-      <S.Checkbox checked={checked}>
+      <S.Checkbox name={label} checked={checked}>
         <HiCheck />
       </S.Checkbox>
       <S.Label htmlFor={label}>{label}</S.Label>
