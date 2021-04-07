@@ -33,8 +33,6 @@ As I have chosen Firebase for my user authentication, there should be a minimal 
 ### Build and deploy the application
 ---
 
-**Please note**: This project is hooked up to Firebase, using environment variables that you will not find when you clone this project. Therefore, it is probably best to test the project through the live site.
-
 Follow the steps below to clone, build and deploy this application:
 1. Clone this repo
 ```
